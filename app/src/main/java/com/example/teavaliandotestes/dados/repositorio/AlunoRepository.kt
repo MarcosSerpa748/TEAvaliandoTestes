@@ -3,8 +3,9 @@ package com.example.teavaliandotestes.dados.repositorio
 import com.example.teavaliandotestes.dados.dao.AlunoDAO
 import com.example.teavaliandotestes.dados.entidade.AlunoEntity
 import java.time.LocalDate
+import javax.inject.Inject
 
-class AlunoRepository(private val alunoDAO: AlunoDAO){
+class AlunoRepository@Inject constructor(private val alunoDAO: AlunoDAO){
 
     val dados = alunoDAO.todosAlunos()
 
