@@ -3,7 +3,7 @@ package com.example.teavaliandotestes.viewmodel
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.teavaliandotestes.dados.entidade.AlunoEntity
-import com.example.teavaliandotestes.dados.repositorio.AlunoRepository
+import com.example.teavaliandotestes.dados.repositorio.AlunoRepositorio
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -20,7 +20,7 @@ data class TelaLoginUIState(
 )
 
 @HiltViewModel
-class TelaLoginViewModel@Inject constructor(private val repositorio: AlunoRepository): ViewModel(){
+class TelaLoginViewModel@Inject constructor(private val repositorio: AlunoRepositorio): ViewModel(){
 
     private val _uiState = MutableStateFlow(TelaLoginUIState())
     val uiState = _uiState.asStateFlow()
@@ -52,7 +52,7 @@ class TelaLoginViewModel@Inject constructor(private val repositorio: AlunoReposi
         val dataVerificada = _uiState.value.dataNascimento ?: return
 
         viewModelScope.launch {
-            repositorio.adicionarAluno(nome = _uiState.value.nomeAluno, dataNascimento = dataVerificada, nomeProfessora = _uiState.value.nomeProfessora, turma = _uiState.value.turma)
+            repositorio.inserirAluno(nome = _uiState.value.nomeAluno, dataNascimento = dataVerificada, nomeProfessora = _uiState.value.nomeProfessora, turma = _uiState.value.turma)
             alterarNome("")
             alterarData(null)
             alterarNomeProfessora("")
