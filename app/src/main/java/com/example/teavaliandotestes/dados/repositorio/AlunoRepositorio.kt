@@ -8,5 +8,5 @@ interface AlunoRepositorio{
 
     suspend fun inserirAluno(nome:String,dataNascimento: LocalDate,nomeProfessora:String,turma:String)
     suspend fun deletarAluno(aluno: AlunoEntity)
-    suspend fun todosAlunos(): Flow<List<AlunoEntity>>
+    fun todosAlunos(): Flow<List<AlunoEntity>>
 }

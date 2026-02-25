@@ -4,6 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.teavaliandotestes.dados.entidade.AlunoEntity
 import com.example.teavaliandotestes.dados.repositorio.AlunoRepositorio
+import com.example.teavaliandotestes.usecases.InserirAlunoUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -20,7 +21,7 @@ data class TelaLoginUIState(
 )
 
 @HiltViewModel
-class TelaLoginViewModel@Inject constructor(private val repositorio: AlunoRepositorio): ViewModel(){
+class TelaLoginViewModel@Inject constructor(private val inserirAlunoUseCase: InserirAlunoUseCase): ViewModel(){
 
     private val _uiState = MutableStateFlow(TelaLoginUIState())
     val uiState = _uiState.asStateFlow()
@@ -48,20 +49,16 @@ class TelaLoginViewModel@Inject constructor(private val repositorio: AlunoReposi
         }
     }
 
-    fun salvarAluno(){
+    fun salvarAluno() {
         val dataVerificada = _uiState.value.dataNascimento ?: return
 
         viewModelScope.launch {
-            repositorio.inserirAluno(nome = _uiState.value.nomeAluno, dataNascimento = dataVerificada, nomeProfessora = _uiState.value.nomeProfessora, turma = _uiState.value.turma)
+            inserirAlunoUseCase (_uiState.value.nomeAluno, dataVerificada,_uiState.value.nomeProfessora,_uiState.value.turma)
             alterarNome("")
             alterarData(null)
             alterarNomeProfessora("")
-            alterarTurma("")
+            alterarNomeProfessora("")
         }
     }
-    fun deletarAluno(aluno: AlunoEntity){
-        viewModelScope.launch{
-            repositorio.deletarAluno(aluno)
-        }
-    }
+
 }

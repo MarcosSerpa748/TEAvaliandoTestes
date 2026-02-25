@@ -18,7 +18,7 @@ class AlunoRepositorioimpl@Inject constructor(private val dao: AlunoDAO): AlunoR
         dao.deletarAluno(aluno)
     }
 
-    override suspend fun todosAlunos(): Flow<List<AlunoEntity>> {
+    override fun todosAlunos(): Flow<List<AlunoEntity>> {
         return dao.todosAlunos()
     }
 
