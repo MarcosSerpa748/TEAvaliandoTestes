@@ -6,10 +6,13 @@ import com.example.teavaliandotestes.dados.entidade.AlunoEntity
 import com.example.teavaliandotestes.dados.repositorio.AlunoRepositorio
 import com.example.teavaliandotestes.usecases.InserirAlunoUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
+import java.lang.Exception
 import java.time.LocalDate
 import javax.inject.Inject
 
@@ -25,6 +28,9 @@ class TelaLoginViewModel@Inject constructor(private val inserirAlunoUseCase: Ins
 
     private val _uiState = MutableStateFlow(TelaLoginUIState())
     val uiState = _uiState.asStateFlow()
+
+    private val _mensagemError = MutableSharedFlow<String>()
+    val mensagemError = _mensagemError.asSharedFlow()
 
     fun alterarNome(valor:String){
         _uiState.update { valorAtual ->
@@ -53,11 +59,16 @@ class TelaLoginViewModel@Inject constructor(private val inserirAlunoUseCase: Ins
         val dataVerificada = _uiState.value.dataNascimento ?: return
 
         viewModelScope.launch {
-            inserirAlunoUseCase (_uiState.value.nomeAluno, dataVerificada,_uiState.value.nomeProfessora,_uiState.value.turma)
-            alterarNome("")
-            alterarData(null)
-            alterarNomeProfessora("")
-            alterarNomeProfessora("")
+            try {
+                inserirAlunoUseCase (_uiState.value.nomeAluno, dataVerificada,_uiState.value.nomeProfessora,_uiState.value.turma)
+                alterarNome("")
+                alterarData(null)
+                alterarNomeProfessora("")
+                alterarNomeProfessora("")
+            }catch (e:Exception){
+                _mensagemError.emit(e.message ?: "Erro desconhecido!")
+            }
+
         }
     }
 

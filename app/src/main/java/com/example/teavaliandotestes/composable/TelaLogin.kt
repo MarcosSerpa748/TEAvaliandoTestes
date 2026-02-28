@@ -10,6 +10,7 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.imePadding
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.rememberScrollState
@@ -28,6 +29,10 @@ import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.OutlinedTextFieldDefaults
+import androidx.compose.material3.Scaffold
+import androidx.compose.material3.SnackbarDuration
+import androidx.compose.material3.SnackbarHost
+import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.material3.rememberDatePickerState
@@ -64,154 +69,183 @@ object TelaLogin
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun TelaLogin(viewModel: TelaLoginViewModel = hiltViewModel(),navController: NavController){
+fun TelaLogin(viewModel: TelaLoginViewModel = hiltViewModel(),navController: NavController) {
 
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
     val formatador = DateTimeFormatter.ofPattern("dd/MM/yyyy")
+    val snackBarState = remember { SnackbarHostState() }
     var abrirTecladoDatas by remember { mutableStateOf(false) }
 
-    Column(
-        Modifier
-            .fillMaxSize()
-            .background(color = PastelBlue)
-            .verticalScroll(rememberScrollState())
-            .imePadding(),
-        verticalArrangement = Arrangement.Center,
-        horizontalAlignment = Alignment.CenterHorizontally){
+    LaunchedEffect(Unit) {
+        viewModel.mensagemError.collect {
+            snackBarState.showSnackbar(message = it, duration = SnackbarDuration.Short)
+        }
+    }
+    Scaffold(snackbarHost = { SnackbarHost(snackBarState) }) { innerPadding ->
 
-        Image(
-            painter = painterResource(R.drawable.img),
-            contentDescription = "Título da tela de login",
+        Column(
             Modifier
-                .height(140.dp)
-                .width(250.dp)
-                .clip(RoundedCornerShape(15.dp)))
-        Spacer(Modifier.size(150.dp))
-        Image(
-            painter = painterResource(R.drawable.teuzinho),
-            contentDescription = "teuzinho",
-            Modifier
-                .height(230.dp)
-                .width(400.dp))
-        OutlinedTextField(
-            value = uiState.nomeAluno,
-            onValueChange = {viewModel.alterarNome(it)},
-            shape = RoundedCornerShape(25.dp),
-            leadingIcon = {
-                Icon(imageVector = Icons.Outlined.Face, contentDescription = null, tint = Color.Black)
-            },
-            colors = OutlinedTextFieldDefaults.colors(
-                focusedContainerColor = Color.White,
-                unfocusedContainerColor = Color.White,
-                focusedTextColor = Color.Black,
-                unfocusedTextColor = Color.Black,
-                focusedBorderColor = Color.Red,
-                unfocusedBorderColor = Color.Red,
-            ),
-            placeholder = { Text(text = "Nome do aluno:") }
-        )
-        Spacer(Modifier.size(10.dp))
-        OutlinedTextField(
-            value = uiState.dataNascimento?.format(formatador) ?: "",
-            onValueChange = {},
-            readOnly = true,
-            leadingIcon = {
-                Icon(imageVector = Icons.Outlined.DateRange, contentDescription = null, tint = Color.Black)
-            },
-            placeholder = {Text(text = "Nascimento do aluno:")},
-            colors = OutlinedTextFieldDefaults.colors(
-                focusedContainerColor = Color.White,
-                unfocusedContainerColor = Color.White,
-                focusedTextColor = Color.Black,
-                unfocusedTextColor = Color.Black,
-                focusedBorderColor = Color.Green,
-                unfocusedBorderColor = Color.Green,
-            ),
-            shape = RoundedCornerShape(25.dp),
-            interactionSource = remember { MutableInteractionSource() }
-                .also { source ->
-                    LaunchedEffect(source){
-                        source.interactions.collect {
-                            if (it is PressInteraction.Release){
-                                abrirTecladoDatas = true
+                .fillMaxSize()
+                .background(color = PastelBlue)
+                .verticalScroll(rememberScrollState())
+                .imePadding()
+                .padding(innerPadding),
+            verticalArrangement = Arrangement.Center,
+            horizontalAlignment = Alignment.CenterHorizontally
+        ) {
+
+            Image(
+                painter = painterResource(R.drawable.img),
+                contentDescription = "Título da tela de login",
+                Modifier
+                    .height(140.dp)
+                    .width(250.dp)
+                    .clip(RoundedCornerShape(15.dp))
+            )
+            Spacer(Modifier.size(150.dp))
+            Image(
+                painter = painterResource(R.drawable.teuzinho),
+                contentDescription = "teuzinho",
+                Modifier
+                    .height(230.dp)
+                    .width(400.dp)
+            )
+            OutlinedTextField(
+                value = uiState.nomeAluno,
+                onValueChange = { viewModel.alterarNome(it) },
+                shape = RoundedCornerShape(25.dp),
+                leadingIcon = {
+                    Icon(
+                        imageVector = Icons.Outlined.Face,
+                        contentDescription = null,
+                        tint = Color.Black
+                    )
+                },
+                colors = OutlinedTextFieldDefaults.colors(
+                    focusedContainerColor = Color.White,
+                    unfocusedContainerColor = Color.White,
+                    focusedTextColor = Color.Black,
+                    unfocusedTextColor = Color.Black,
+                    focusedBorderColor = Color.Red,
+                    unfocusedBorderColor = Color.Red,
+                ),
+                placeholder = { Text(text = "Nome do aluno:") }
+            )
+            Spacer(Modifier.size(10.dp))
+            OutlinedTextField(
+                value = uiState.dataNascimento?.format(formatador) ?: "",
+                onValueChange = {},
+                readOnly = true,
+                leadingIcon = {
+                    Icon(
+                        imageVector = Icons.Outlined.DateRange,
+                        contentDescription = null,
+                        tint = Color.Black
+                    )
+                },
+                placeholder = { Text(text = "Nascimento do aluno:") },
+                colors = OutlinedTextFieldDefaults.colors(
+                    focusedContainerColor = Color.White,
+                    unfocusedContainerColor = Color.White,
+                    focusedTextColor = Color.Black,
+                    unfocusedTextColor = Color.Black,
+                    focusedBorderColor = Color.Green,
+                    unfocusedBorderColor = Color.Green,
+                ),
+                shape = RoundedCornerShape(25.dp),
+                interactionSource = remember { MutableInteractionSource() }
+                    .also { source ->
+                        LaunchedEffect(source) {
+                            source.interactions.collect {
+                                if (it is PressInteraction.Release) {
+                                    abrirTecladoDatas = true
+                                }
                             }
                         }
                     }
-                }
-        )
+            )
 
-        if (abrirTecladoDatas){
-            val datePickerState = rememberDatePickerState()
+            if (abrirTecladoDatas) {
+                val datePickerState = rememberDatePickerState()
 
-            DatePickerDialog(
-                onDismissRequest = { abrirTecladoDatas = false},
-                confirmButton = {
-                    TextButton(onClick = {
-                        abrirTecladoDatas = false
+                DatePickerDialog(
+                    onDismissRequest = { abrirTecladoDatas = false },
+                    confirmButton = {
+                        TextButton(onClick = {
+                            abrirTecladoDatas = false
 
-                        datePickerState.selectedDateMillis?.let {
-                            val dataConvertida = Instant.ofEpochMilli(it).atZone(ZoneId.of("UTC")).toLocalDate()
+                            datePickerState.selectedDateMillis?.let {
+                                val dataConvertida =
+                                    Instant.ofEpochMilli(it).atZone(ZoneId.of("UTC")).toLocalDate()
 
-                            viewModel.alterarData(dataConvertida)
+                                viewModel.alterarData(dataConvertida)
+                            }
+                        }) {
+                            Text(text = "Confirmar")
                         }
-                    }){
-                        Text(text = "Confirmar")
-                    }
-                },
-                dismissButton = {TextButton(onClick = {abrirTecladoDatas = false}) {
-                    Text(text = "Cancelar")
-                }}) {
-                DatePicker(datePickerState)
+                    },
+                    dismissButton = {
+                        TextButton(onClick = { abrirTecladoDatas = false }) {
+                            Text(text = "Cancelar")
+                        }
+                    }) {
+                    DatePicker(datePickerState)
+                }
             }
-        }
-        Spacer(Modifier.size(10.dp))
-        OutlinedTextField(
-            value = uiState.nomeProfessora,
-            onValueChange = {viewModel.alterarNomeProfessora(it)},
-            placeholder = {Text(text = "Nome da professora:")},
-            colors = OutlinedTextFieldDefaults.colors(
-                focusedContainerColor = Color.White,
-                unfocusedContainerColor = Color.White,
-                focusedTextColor = Color.Black,
-                unfocusedTextColor = Color.Black,
-                focusedBorderColor = ElectricBlue,
-                unfocusedBorderColor = ElectricBlue,
-            ),
-            leadingIcon = {
-                Icon(imageVector = Icons.Outlined.Person,contentDescription = null,tint = Color.Black)
-            },
-            shape = RoundedCornerShape(25.dp)
-        )
-        Spacer(Modifier.size(10.dp))
-        OutlinedTextField(
-            value = uiState.turma,
-            onValueChange = {viewModel.alterarTurma(it)},
-            placeholder = {Text(text = "Nome da turma:")},
-            colors = OutlinedTextFieldDefaults.colors(
-                focusedContainerColor = Color.White,
-                unfocusedContainerColor = Color.White,
-                focusedTextColor = Color.Black,
-                unfocusedTextColor = Color.Black,
-                focusedBorderColor = Color.Yellow,
-                unfocusedBorderColor = Color.Yellow,
-            ),
-            leadingIcon = {
-                Icon(imageVector = Icons.Outlined.Home,contentDescription = null,tint = Color.Black)
-            },
-            shape = RoundedCornerShape(25.dp)
-        )
-        Button(
-            onClick = {
-                viewModel.salvarAluno()
-                navController.navigate(TelaTeste)
-                      },
-            enabled = uiState.nomeAluno.isNotBlank() && uiState.dataNascimento != null && uiState.nomeProfessora.isNotBlank() && uiState.turma.isNotBlank()){
-            Text("Cadastrar aluno")
-            Icon(imageVector = Icons.Filled.Add, contentDescription = null)
+            Spacer(Modifier.size(10.dp))
+            OutlinedTextField(
+                value = uiState.nomeProfessora,
+                onValueChange = { viewModel.alterarNomeProfessora(it) },
+                placeholder = { Text(text = "Nome da professora:") },
+                colors = OutlinedTextFieldDefaults.colors(
+                    focusedContainerColor = Color.White,
+                    unfocusedContainerColor = Color.White,
+                    focusedTextColor = Color.Black,
+                    unfocusedTextColor = Color.Black,
+                    focusedBorderColor = ElectricBlue,
+                    unfocusedBorderColor = ElectricBlue,
+                ),
+                leadingIcon = {
+                    Icon(
+                        imageVector = Icons.Outlined.Person,
+                        contentDescription = null,
+                        tint = Color.Black
+                    )
+                },
+                shape = RoundedCornerShape(25.dp)
+            )
+            Spacer(Modifier.size(10.dp))
+            OutlinedTextField(
+                value = uiState.turma,
+                onValueChange = { viewModel.alterarTurma(it) },
+                placeholder = { Text(text = "Nome da turma:") },
+                colors = OutlinedTextFieldDefaults.colors(
+                    focusedContainerColor = Color.White,
+                    unfocusedContainerColor = Color.White,
+                    focusedTextColor = Color.Black,
+                    unfocusedTextColor = Color.Black,
+                    focusedBorderColor = Color.Yellow,
+                    unfocusedBorderColor = Color.Yellow,
+                ),
+                leadingIcon = {
+                    Icon(
+                        imageVector = Icons.Outlined.Home,
+                        contentDescription = null,
+                        tint = Color.Black
+                    )
+                },
+                shape = RoundedCornerShape(25.dp)
+            )
+            Button(
+                onClick = {
+                    viewModel.salvarAluno()
+                }){
+                Text("Cadastrar aluno")
+                Icon(imageVector = Icons.Filled.Add, contentDescription = null)
+            }
         }
     }
 }
-
 @Preview
 @Composable
 private fun TelaLoginPreviw(){
