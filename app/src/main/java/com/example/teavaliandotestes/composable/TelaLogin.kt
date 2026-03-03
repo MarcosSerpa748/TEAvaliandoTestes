@@ -81,6 +81,11 @@ fun TelaLogin(viewModel: TelaLoginViewModel = hiltViewModel(),navController: Nav
             snackBarState.showSnackbar(message = it, duration = SnackbarDuration.Short)
         }
     }
+    LaunchedEffect(Unit){
+        viewModel.validarNavegacao.collect {
+            navController.navigate(TelaTeste)
+        }
+    }
     Scaffold(snackbarHost = { SnackbarHost(snackBarState) }) { innerPadding ->
 
         Column(

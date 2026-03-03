@@ -9,7 +9,7 @@ class InserirAlunoUseCase@Inject constructor(private val alunoRepositorio: Aluno
 
     suspend operator fun invoke(nomeAluno:String,dataNascimento: LocalDate,nomeProfessora:String,turma: String){
         if (nomeAluno.isBlank()){
-            throw Exception("Campo ")
+            throw Exception("Campo do nome está vazio")
         }
         if (nomeProfessora.isBlank()){
             throw Exception("O campo nome da professora está vazio!")

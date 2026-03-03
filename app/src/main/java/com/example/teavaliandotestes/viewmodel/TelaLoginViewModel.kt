@@ -6,10 +6,12 @@ import com.example.teavaliandotestes.dados.entidade.AlunoEntity
 import com.example.teavaliandotestes.dados.repositorio.AlunoRepositorio
 import com.example.teavaliandotestes.usecases.InserirAlunoUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import java.lang.Exception
@@ -31,6 +33,9 @@ class TelaLoginViewModel@Inject constructor(private val inserirAlunoUseCase: Ins
 
     private val _mensagemError = MutableSharedFlow<String>()
     val mensagemError = _mensagemError.asSharedFlow()
+
+    private val _validarNavegacao = Channel<Unit>()
+    val validarNavegacao = _validarNavegacao.receiveAsFlow()
 
     fun alterarNome(valor:String){
         _uiState.update { valorAtual ->
@@ -56,20 +61,25 @@ class TelaLoginViewModel@Inject constructor(private val inserirAlunoUseCase: Ins
     }
 
     fun salvarAluno() {
-        val dataVerificada = _uiState.value.dataNascimento ?: return
 
         viewModelScope.launch {
+            val dataVerificada = _uiState.value.dataNascimento
+
+            if (dataVerificada == null) {
+                _mensagemError.emit("Campo de data de nascimento vazio!")
+                return@launch
+            }
+
             try {
                 inserirAlunoUseCase (_uiState.value.nomeAluno, dataVerificada,_uiState.value.nomeProfessora,_uiState.value.turma)
                 alterarNome("")
                 alterarData(null)
                 alterarNomeProfessora("")
-                alterarNomeProfessora("")
+                alterarTurma("")
+                _validarNavegacao.send(Unit)
             }catch (e:Exception){
                 _mensagemError.emit(e.message ?: "Erro desconhecido!")
             }
-
         }
     }
-
 }
