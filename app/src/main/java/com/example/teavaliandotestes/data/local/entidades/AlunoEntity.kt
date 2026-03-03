@@ -1,4 +1,4 @@
-package com.example.teavaliandotestes.dados.entidade
+package com.example.teavaliandotestes.data.local.entidades
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey

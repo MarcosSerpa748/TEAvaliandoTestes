@@ -1,10 +1,9 @@
-package com.example.teavaliandotestes.viewmodel
+package com.example.teavaliandotestes.presentation.viewmodels
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.teavaliandotestes.dados.entidade.AlunoEntity
-import com.example.teavaliandotestes.dados.repositorio.AlunoRepositorio
-import com.example.teavaliandotestes.usecases.InserirAlunoUseCase
+import com.example.teavaliandotestes.domain.usecases.InserirAlunoUseCase
+import com.example.teavaliandotestes.presentation.states.TelaLoginUIState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.MutableSharedFlow
@@ -18,12 +17,7 @@ import java.lang.Exception
 import java.time.LocalDate
 import javax.inject.Inject
 
-data class TelaLoginUIState(
-    val nomeAluno:String = "",
-    val dataNascimento: LocalDate? = null,
-    val nomeProfessora:String = "",
-    val turma:String = ""
-)
+
 
 @HiltViewModel
 class TelaLoginViewModel@Inject constructor(private val inserirAlunoUseCase: InserirAlunoUseCase): ViewModel(){
@@ -57,6 +51,12 @@ class TelaLoginViewModel@Inject constructor(private val inserirAlunoUseCase: Ins
     fun alterarTurma(valor:String){
         _uiState.update { valorAtual ->
             valorAtual.copy(turma = valor)
+        }
+    }
+
+    fun alterarEstadoTecladoData(valor:Boolean){
+        _uiState.update { valorAtual ->
+            valorAtual.copy(abrirTecladoData = valor)
         }
     }
 

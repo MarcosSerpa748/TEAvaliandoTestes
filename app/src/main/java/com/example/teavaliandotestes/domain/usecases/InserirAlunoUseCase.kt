@@ -1,13 +1,13 @@
-package com.example.teavaliandotestes.usecases
+package com.example.teavaliandotestes.domain.usecases
 
-import com.example.teavaliandotestes.dados.repositorio.AlunoRepositorio
+import com.example.teavaliandotestes.domain.repositorios.AlunoRepositorio
 import java.lang.Exception
 import java.time.LocalDate
 import javax.inject.Inject
 
 class InserirAlunoUseCase@Inject constructor(private val alunoRepositorio: AlunoRepositorio){
 
-    suspend operator fun invoke(nomeAluno:String,dataNascimento: LocalDate,nomeProfessora:String,turma: String){
+    suspend operator fun invoke(nomeAluno:String, dataNascimento: LocalDate, nomeProfessora:String, turma: String){
         if (nomeAluno.isBlank()){
             throw Exception("Campo do nome está vazio")
         }

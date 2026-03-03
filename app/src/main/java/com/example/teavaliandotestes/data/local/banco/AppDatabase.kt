@@ -1,11 +1,11 @@
-package com.example.teavaliandotestes.dados.banco
+package com.example.teavaliandotestes.data.local.banco
 
 import androidx.room.Database
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
-import com.example.teavaliandotestes.dados.conversor.Conversor
-import com.example.teavaliandotestes.dados.dao.AlunoDAO
-import com.example.teavaliandotestes.dados.entidade.AlunoEntity
+import com.example.teavaliandotestes.data.conversor.Conversor
+import com.example.teavaliandotestes.data.local.daos.AlunoDAO
+import com.example.teavaliandotestes.data.local.entidades.AlunoEntity
 
 @Database(entities = [AlunoEntity::class], version = 1)
 @TypeConverters(Conversor::class)

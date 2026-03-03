@@ -1,10 +1,10 @@
-package com.example.teavaliandotestes.dados.dao
+package com.example.teavaliandotestes.data.local.daos
 
 import androidx.room.Dao
 import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.Query
-import com.example.teavaliandotestes.dados.entidade.AlunoEntity
+import com.example.teavaliandotestes.data.local.entidades.AlunoEntity
 import kotlinx.coroutines.flow.Flow
 
 @Dao

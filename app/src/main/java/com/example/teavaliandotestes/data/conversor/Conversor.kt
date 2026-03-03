@@ -1,7 +1,7 @@
-package com.example.teavaliandotestes.dados.conversor
+package com.example.teavaliandotestes.data.conversor
 
 import androidx.room.TypeConverter
-import com.example.teavaliandotestes.enum.CategoriaQuestao
+import com.example.teavaliandotestes.domain.enums.CategoriaQuestao
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import java.time.LocalDate

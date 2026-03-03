@@ -1,4 +1,4 @@
-package com.example.teavaliandotestes.enum
+package com.example.teavaliandotestes.domain.enums
 
 enum class CategoriaQuestao{
     ESCRITA,

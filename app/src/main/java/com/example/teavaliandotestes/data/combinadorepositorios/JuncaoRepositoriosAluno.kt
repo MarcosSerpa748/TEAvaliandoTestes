@@ -1,7 +1,7 @@
-package com.example.teavaliandotestes.dados.combinadorepositorios
+package com.example.teavaliandotestes.data.combinadorepositorios
 
-import com.example.teavaliandotestes.dados.repositorio.AlunoRepositorio
-import com.example.teavaliandotestes.dados.repositorio.AlunoRepositorioimpl
+import com.example.teavaliandotestes.domain.repositorios.AlunoRepositorio
+import com.example.teavaliandotestes.data.repositorio.AlunoRepositorioimpl
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn

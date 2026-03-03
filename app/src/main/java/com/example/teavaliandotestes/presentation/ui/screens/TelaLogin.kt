@@ -1,4 +1,4 @@
-package com.example.teavaliandotestes.composable
+package com.example.teavaliandotestes.presentation.ui.screens
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -39,25 +39,20 @@ import androidx.compose.material3.rememberDatePickerState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavController
-import androidx.navigation.compose.rememberNavController
 import com.example.teavaliandotestes.R
 import com.example.teavaliandotestes.ui.theme.ElectricBlue
 import com.example.teavaliandotestes.ui.theme.PastelBlue
-import com.example.teavaliandotestes.ui.theme.TEAvaliandoTestesTheme
-import com.example.teavaliandotestes.viewmodel.TelaLoginViewModel
+import com.example.teavaliandotestes.presentation.viewmodels.TelaLoginViewModel
 import kotlinx.serialization.Serializable
 import java.time.Instant
 import java.time.ZoneId
@@ -74,7 +69,6 @@ fun TelaLogin(viewModel: TelaLoginViewModel = hiltViewModel(),navController: Nav
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
     val formatador = DateTimeFormatter.ofPattern("dd/MM/yyyy")
     val snackBarState = remember { SnackbarHostState() }
-    var abrirTecladoDatas by remember { mutableStateOf(false) }
 
     LaunchedEffect(Unit) {
         viewModel.mensagemError.collect {
@@ -163,21 +157,21 @@ fun TelaLogin(viewModel: TelaLoginViewModel = hiltViewModel(),navController: Nav
                         LaunchedEffect(source) {
                             source.interactions.collect {
                                 if (it is PressInteraction.Release) {
-                                    abrirTecladoDatas = true
+                                    viewModel.alterarEstadoTecladoData(true)
                                 }
                             }
                         }
                     }
             )
 
-            if (abrirTecladoDatas) {
+            if (uiState.abrirTecladoData) {
                 val datePickerState = rememberDatePickerState()
 
                 DatePickerDialog(
-                    onDismissRequest = { abrirTecladoDatas = false },
+                    onDismissRequest = { viewModel.alterarEstadoTecladoData(false) },
                     confirmButton = {
                         TextButton(onClick = {
-                            abrirTecladoDatas = false
+                            viewModel.alterarEstadoTecladoData(false)
 
                             datePickerState.selectedDateMillis?.let {
                                 val dataConvertida =
@@ -190,7 +184,7 @@ fun TelaLogin(viewModel: TelaLoginViewModel = hiltViewModel(),navController: Nav
                         }
                     },
                     dismissButton = {
-                        TextButton(onClick = { abrirTecladoDatas = false }) {
+                        TextButton(onClick = { viewModel.alterarEstadoTecladoData(false) }) {
                             Text(text = "Cancelar")
                         }
                     }) {
@@ -249,12 +243,5 @@ fun TelaLogin(viewModel: TelaLoginViewModel = hiltViewModel(),navController: Nav
                 Icon(imageVector = Icons.Filled.Add, contentDescription = null)
             }
         }
-    }
-}
-@Preview
-@Composable
-private fun TelaLoginPreviw(){
-    TEAvaliandoTestesTheme(){
-        TelaLogin(navController = rememberNavController())
     }
 }
