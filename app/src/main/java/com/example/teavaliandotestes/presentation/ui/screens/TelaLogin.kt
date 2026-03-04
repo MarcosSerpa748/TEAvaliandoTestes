@@ -174,8 +174,7 @@ fun TelaLogin(viewModel: TelaLoginViewModel = hiltViewModel(),navController: Nav
                             viewModel.alterarEstadoTecladoData(false)
 
                             datePickerState.selectedDateMillis?.let {
-                                val dataConvertida =
-                                    Instant.ofEpochMilli(it).atZone(ZoneId.of("UTC")).toLocalDate()
+                                val dataConvertida = Instant.ofEpochMilli(it).atZone(ZoneId.of("UTC")).toLocalDate()
 
                                 viewModel.alterarData(dataConvertida)
                             }
