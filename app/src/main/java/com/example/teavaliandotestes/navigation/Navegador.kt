@@ -4,6 +4,7 @@ import androidx.compose.runtime.Composable
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import androidx.navigation.toRoute
 import com.example.teavaliandotestes.presentation.ui.screens.SegundaTela
 import com.example.teavaliandotestes.presentation.ui.screens.TelaLogin
 import com.example.teavaliandotestes.presentation.ui.screens.TelaTeste
@@ -21,7 +22,8 @@ fun Navegador(){
             })
         }
         composable<SegundaTela> {
-            TelaTeste(navController = navController)
+            val valoresPassados = it.toRoute<SegundaTela>()
+            TelaTeste(valoresPassados.idAluno,navController = navController)
         }
     }
 }

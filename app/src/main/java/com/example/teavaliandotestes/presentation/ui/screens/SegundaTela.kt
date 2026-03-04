@@ -20,7 +20,7 @@ import kotlinx.serialization.Serializable
 data class SegundaTela(val idAluno:Int)
 
 @Composable
-fun TelaTeste(navController: NavController){
+fun TelaTeste(idAluno:Int,navController: NavController){
     Column(
         Modifier
             .fillMaxSize()
@@ -28,7 +28,7 @@ fun TelaTeste(navController: NavController){
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally){
 
-        Text(text = "Aluno cadastrado com sucesso!")
+        Text(text = "Aluno cadastrado com sucesso!\nSeu ID:$idAluno")
         Button(onClick = {
             navController.navigate(TelaLogin)
         }) {
