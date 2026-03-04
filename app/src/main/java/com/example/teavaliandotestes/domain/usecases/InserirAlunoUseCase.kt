@@ -7,7 +7,7 @@ import javax.inject.Inject
 
 class InserirAlunoUseCase@Inject constructor(private val alunoRepositorio: AlunoRepositorio){
 
-    suspend operator fun invoke(nomeAluno:String, dataNascimento: LocalDate, nomeProfessora:String, turma: String){
+    suspend operator fun invoke(nomeAluno:String, dataNascimento: LocalDate, nomeProfessora:String, turma: String):Long{
         if (nomeAluno.isBlank()){
             throw Exception("Campo do nome está vazio")
         }
@@ -18,6 +18,6 @@ class InserirAlunoUseCase@Inject constructor(private val alunoRepositorio: Aluno
             throw Exception("O campo turma está vazio!")
         }
 
-        alunoRepositorio.inserirAluno(nomeAluno,dataNascimento,nomeProfessora,turma)
+        return alunoRepositorio.inserirAluno(nomeAluno,dataNascimento,nomeProfessora,turma)
     }
 }

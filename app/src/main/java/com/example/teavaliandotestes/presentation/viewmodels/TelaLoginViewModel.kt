@@ -28,7 +28,7 @@ class TelaLoginViewModel@Inject constructor(private val inserirAlunoUseCase: Ins
     private val _mensagemError = MutableSharedFlow<String>()
     val mensagemError = _mensagemError.asSharedFlow()
 
-    private val _validarNavegacao = Channel<Unit>()
+    private val _validarNavegacao = Channel<Int>()
     val validarNavegacao = _validarNavegacao.receiveAsFlow()
 
     fun alterarNome(valor:String){
@@ -71,12 +71,12 @@ class TelaLoginViewModel@Inject constructor(private val inserirAlunoUseCase: Ins
             }
 
             try {
-                inserirAlunoUseCase (_uiState.value.nomeAluno, dataVerificada,_uiState.value.nomeProfessora,_uiState.value.turma)
+                 val idAluno = inserirAlunoUseCase (_uiState.value.nomeAluno, dataVerificada,_uiState.value.nomeProfessora,_uiState.value.turma)
                 alterarNome("")
                 alterarData(null)
                 alterarNomeProfessora("")
                 alterarTurma("")
-                _validarNavegacao.send(Unit)
+                _validarNavegacao.send(idAluno.toInt())
             }catch (e:Exception){
                 _mensagemError.emit(e.message ?: "Erro desconhecido!")
             }

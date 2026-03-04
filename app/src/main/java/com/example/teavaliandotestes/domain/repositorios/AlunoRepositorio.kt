@@ -6,7 +6,7 @@ import java.time.LocalDate
 
 interface AlunoRepositorio{
 
-    suspend fun inserirAluno(nome:String, dataNascimento: LocalDate, nomeProfessora:String, turma:String)
+    suspend fun inserirAluno(nome:String, dataNascimento: LocalDate, nomeProfessora:String, turma:String):Long
     suspend fun deletarAluno(aluno: AlunoEntity)
     fun todosAlunos(): Flow<List<AlunoEntity>>
 }

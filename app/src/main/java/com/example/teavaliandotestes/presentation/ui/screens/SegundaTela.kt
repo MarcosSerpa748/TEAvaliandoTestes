@@ -17,7 +17,7 @@ import com.example.teavaliandotestes.ui.theme.PastelBlue
 import kotlinx.serialization.Serializable
 
 @Serializable
-object TelaTeste
+data class SegundaTela(val idAluno:Int)
 
 @Composable
 fun TelaTeste(navController: NavController){
@@ -28,7 +28,7 @@ fun TelaTeste(navController: NavController){
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally){
 
-        Text(text = "Aluno castrado!")
+        Text(text = "Aluno cadastrado com sucesso!")
         Button(onClick = {
             navController.navigate(TelaLogin)
         }) {

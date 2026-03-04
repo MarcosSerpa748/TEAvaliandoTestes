@@ -11,7 +11,7 @@ import kotlinx.coroutines.flow.Flow
 interface AlunoDAO {
 
     @Insert
-    suspend fun adicionarAluno(aluno: AlunoEntity)
+    suspend fun adicionarAluno(aluno: AlunoEntity):Long
 
     @Delete
     suspend fun deletarAluno(aluno: AlunoEntity)

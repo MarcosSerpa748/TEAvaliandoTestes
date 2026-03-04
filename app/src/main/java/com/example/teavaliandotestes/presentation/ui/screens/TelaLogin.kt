@@ -48,7 +48,6 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import androidx.navigation.NavController
 import com.example.teavaliandotestes.R
 import com.example.teavaliandotestes.ui.theme.ElectricBlue
 import com.example.teavaliandotestes.ui.theme.PastelBlue
@@ -64,7 +63,7 @@ object TelaLogin
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun TelaLogin(viewModel: TelaLoginViewModel = hiltViewModel(),navController: NavController) {
+fun TelaLogin(validarNavegacao:(Int) -> Unit, viewModel: TelaLoginViewModel = hiltViewModel()) {
 
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
     val formatador = DateTimeFormatter.ofPattern("dd/MM/yyyy")
@@ -76,8 +75,8 @@ fun TelaLogin(viewModel: TelaLoginViewModel = hiltViewModel(),navController: Nav
         }
     }
     LaunchedEffect(Unit){
-        viewModel.validarNavegacao.collect {
-            navController.navigate(TelaTeste)
+        viewModel.validarNavegacao.collect {idAluno ->
+            validarNavegacao(idAluno)
         }
     }
     Scaffold(snackbarHost = { SnackbarHost(snackBarState) }) { innerPadding ->
