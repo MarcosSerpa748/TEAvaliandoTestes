@@ -21,7 +21,7 @@ object Database{
             context = contexto,
             klass = AppDatabase::class.java,
             name = "teavaliando_db"
-        ).build()
+        ).fallbackToDestructiveMigration().build()
     }
     @Provides
     fun gerarAlunoDao(appDatabase: AppDatabase): AlunoDAO {
