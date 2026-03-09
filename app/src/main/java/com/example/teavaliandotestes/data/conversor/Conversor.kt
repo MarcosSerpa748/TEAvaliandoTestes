@@ -1,6 +1,7 @@
 package com.example.teavaliandotestes.data.conversor
 
 import androidx.room.TypeConverter
+import com.example.teavaliandotestes.data.dataclass.OpcaoQuestao
 import com.example.teavaliandotestes.domain.enums.CategoriaQuestao
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
@@ -28,12 +29,12 @@ class Conversor(){
         return CategoriaQuestao.valueOf(valor)
     }
     @TypeConverter
-    fun paraJson(valor:List<String>):String{
+    fun paraJson(valor: List<OpcaoQuestao>):String{
         return gson.toJson(valor)
     }
     @TypeConverter
-    fun deJson(valor:String):List<String>{
-        return gson.fromJson(valor,object: TypeToken<List<String>>(){}.type)
+    fun deJson(valor:String):List<OpcaoQuestao>{
+        return gson.fromJson(valor,object:TypeToken<List<OpcaoQuestao>>(){}.type)
     }
 
 }

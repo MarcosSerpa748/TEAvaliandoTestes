@@ -6,8 +6,9 @@ import androidx.room.TypeConverters
 import com.example.teavaliandotestes.data.conversor.Conversor
 import com.example.teavaliandotestes.data.local.daos.AlunoDAO
 import com.example.teavaliandotestes.data.local.entidades.AlunoEntity
+import com.example.teavaliandotestes.data.local.entidades.QuestaoEntity
 
-@Database(entities = [AlunoEntity::class], version = 1)
+@Database(entities = [AlunoEntity::class, QuestaoEntity::class], version = 2)
 @TypeConverters(Conversor::class)
 abstract class AppDatabase(): RoomDatabase(){
 
