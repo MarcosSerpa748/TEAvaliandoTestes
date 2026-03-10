@@ -3,6 +3,7 @@ package com.example.teavaliandotestes.data.local.banco
 import android.content.Context
 import androidx.room.Room
 import com.example.teavaliandotestes.data.local.daos.AlunoDAO
+import com.example.teavaliandotestes.data.local.daos.QuestaoDao
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -26,5 +27,9 @@ object Database{
     @Provides
     fun gerarAlunoDao(appDatabase: AppDatabase): AlunoDAO {
         return appDatabase.gerarDaoAluno()
+    }
+    @Provides
+    fun gerarQuestaoDao(appDatabase: AppDatabase): QuestaoDao{
+        return appDatabase.gerarDaoQuestao()
     }
 }
