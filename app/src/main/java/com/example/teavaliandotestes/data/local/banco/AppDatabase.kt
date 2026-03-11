@@ -9,7 +9,7 @@ import com.example.teavaliandotestes.data.local.daos.QuestaoDao
 import com.example.teavaliandotestes.data.local.entidades.AlunoEntity
 import com.example.teavaliandotestes.data.local.entidades.QuestaoEntity
 
-@Database(entities = [AlunoEntity::class, QuestaoEntity::class], version = 2)
+@Database(entities = [AlunoEntity::class, QuestaoEntity::class], version = 3)
 @TypeConverters(Conversor::class)
 abstract class AppDatabase(): RoomDatabase(){
 

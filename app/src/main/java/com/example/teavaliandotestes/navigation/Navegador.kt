@@ -10,6 +10,7 @@ import com.example.teavaliandotestes.presentation.ui.screens.TelaLogin
 import com.example.teavaliandotestes.presentation.ui.screens.TelaTeste
 
 
+
 @Composable
 fun Navegador(){
 
@@ -23,7 +24,7 @@ fun Navegador(){
         }
         composable<SegundaTela> {
             val valoresPassados = it.toRoute<SegundaTela>()
-            TelaTeste(valoresPassados.idAluno,navController = navController)
+            TelaTeste(valoresPassados.idAluno, validarNavegacao = {navController.navigate(TelaLogin)})
         }
     }
 }

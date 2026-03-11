@@ -10,6 +10,8 @@ import com.example.teavaliandotestes.domain.enums.CategoriaQuestao
 data class QuestaoEntity(
     @PrimaryKey(autoGenerate = true)val id:Long = 0,
     val enunciado:String,
+    val textApoio:String?,
+    val imagemApoio:String?,
     val categoria: CategoriaQuestao,
     val itens: List<OpcaoQuestao>,
     val indicieItenCorreto:Int
