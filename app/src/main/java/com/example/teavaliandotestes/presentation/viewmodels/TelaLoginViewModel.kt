@@ -3,12 +3,10 @@ package com.example.teavaliandotestes.presentation.viewmodels
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.teavaliandotestes.domain.usecases.InserirAlunoUseCase
-import com.example.teavaliandotestes.presentation.states.TelaLoginUIState
+import com.example.teavaliandotestes.presentation.uistates.TelaLoginUIState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.channels.Channel
-import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.flow.update
@@ -25,8 +23,8 @@ class TelaLoginViewModel@Inject constructor(private val inserirAlunoUseCase: Ins
     private val _uiState = MutableStateFlow(TelaLoginUIState())
     val uiState = _uiState.asStateFlow()
 
-    private val _mensagemError = MutableSharedFlow<String>()
-    val mensagemError = _mensagemError.asSharedFlow()
+    private val _mensagemError = Channel<String>()
+    val mensagemError = _mensagemError.receiveAsFlow()
 
     private val _validarNavegacao = Channel<Int>()
     val validarNavegacao = _validarNavegacao.receiveAsFlow()
@@ -66,7 +64,7 @@ class TelaLoginViewModel@Inject constructor(private val inserirAlunoUseCase: Ins
             val dataVerificada = _uiState.value.dataNascimento
 
             if (dataVerificada == null) {
-                _mensagemError.emit("Campo de data de nascimento vazio!")
+                _mensagemError.send("O campo da data está vazio!")
                 return@launch
             }
 
@@ -78,7 +76,7 @@ class TelaLoginViewModel@Inject constructor(private val inserirAlunoUseCase: Ins
                 alterarTurma("")
                 _validarNavegacao.send(idAluno.toInt())
             }catch (e:Exception){
-                _mensagemError.emit(e.message ?: "Erro desconhecido!")
+                _mensagemError.send(e.message ?:"Erro desconhecido!")
             }
         }
     }

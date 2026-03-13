@@ -23,6 +23,6 @@ class GerarProvaUseCase@Inject constructor(private val repositorio: QuestaoRepos
         if (todasQuestoes.isEmpty()){
             throw Exception("O banco está vazio!")
         }
-        return todasQuestoes.shuffled()
+        return todasQuestoes
     }
 }

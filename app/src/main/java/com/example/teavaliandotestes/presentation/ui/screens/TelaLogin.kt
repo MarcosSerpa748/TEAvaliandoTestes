@@ -70,8 +70,8 @@ fun TelaLogin(validarNavegacao:(Int) -> Unit, viewModel: TelaLoginViewModel = hi
     val snackBarState = remember { SnackbarHostState() }
 
     LaunchedEffect(Unit) {
-        viewModel.mensagemError.collect {mensagem ->
-            snackBarState.showSnackbar(message = mensagem, duration = SnackbarDuration.Short)
+        viewModel.mensagemError.collect {
+            snackBarState.showSnackbar(message = it, duration = SnackbarDuration.Short)
         }
     }
     LaunchedEffect(Unit){
