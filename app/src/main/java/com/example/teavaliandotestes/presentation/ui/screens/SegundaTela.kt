@@ -24,4 +24,25 @@ data class SegundaTela(val idAluno:Int)
 @Composable
 fun TelaTeste(idAluno:Int, viewModel: TelaProvaViewModel = hiltViewModel(), validarNavegacao:(Unit) ->Unit){
 
+
+    LaunchedEffect(Unit){
+        viewModel.permitirNavegacao.collect {
+            validarNavegacao(it)
+        }
+    }
+
+    Column(
+        Modifier
+            .fillMaxSize()
+            .background(color = PastelBlue),
+        horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.Center){
+
+        Text(text = "ID do aluno:$idAluno")
+        Button(onClick = {
+            viewModel.lancarNavegacao()
+        }){
+            Text("Voltar para tela cadastro")
+        }
+    }
 }

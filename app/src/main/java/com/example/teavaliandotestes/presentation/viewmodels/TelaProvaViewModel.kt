@@ -9,8 +9,10 @@ import com.example.teavaliandotestes.domain.usecases.GerarProvaUseCase
 import com.example.teavaliandotestes.presentation.uistates.TelaProvaUIState
 import com.example.teavaliandotestes.presentation.ui.screens.SegundaTela
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -29,6 +31,9 @@ class TelaProvaViewModel@Inject constructor(
 
 
     private val pontuacoes = mutableMapOf<CategoriaQuestao,Int>().withDefault { 0 }
+
+    private val _permitirNavegacao = Channel<Unit>()
+    val permitirNavegacao = _permitirNavegacao.receiveAsFlow()
 
     init {
         gerarProva()
@@ -64,7 +69,7 @@ class TelaProvaViewModel@Inject constructor(
             val pontosAtuais = pontuacoes.getValue(questao.categoria)
             pontuacoes[questao.categoria] = pontosAtuais + 1
         }
-        if (estadoAtual.indicieQuestaoAtual < estadoAtual.questoes.size){
+        if (estadoAtual.indicieQuestaoAtual < estadoAtual.questoes.size - 1){
             _uiState.update { valorAtual ->
                 valorAtual.copy(indicieQuestaoAtual = valorAtual.indicieQuestaoAtual + 1, itemSelecionado = null)
             }
@@ -76,6 +81,12 @@ class TelaProvaViewModel@Inject constructor(
     private fun finalizarProva() {
         _uiState.update { valorAtual ->
             valorAtual.copy(provaFinalizada = true)
+        }
+    }
+
+    fun lancarNavegacao(){
+        viewModelScope.launch {
+            _permitirNavegacao.send(Unit)
         }
     }
 }
