@@ -6,9 +6,9 @@ import com.example.teavaliandotestes.data.dataclass.OpcaoQuestao
 import com.example.teavaliandotestes.data.local.daos.QuestaoDao
 import com.example.teavaliandotestes.data.local.entidades.QuestaoEntity
 import com.example.teavaliandotestes.domain.enums.CategoriaQuestao
-import dagger.internal.Provider
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
+import javax.inject.Provider
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 

@@ -17,12 +17,14 @@ object Database{
 
     @Provides
     @Singleton
-    fun gerarBanco(@ApplicationContext contexto: Context): AppDatabase {
+    fun gerarBanco(@ApplicationContext contexto: Context,meuCallback: MeuBancoCallback): AppDatabase {
         return Room.databaseBuilder(
             context = contexto,
             klass = AppDatabase::class.java,
             name = "teavaliando_db"
-        ).fallbackToDestructiveMigration().build()
+        ).fallbackToDestructiveMigration()
+            .addCallback(meuCallback)
+            .build()
     }
     @Provides
     fun gerarAlunoDao(appDatabase: AppDatabase): AlunoDAO {
