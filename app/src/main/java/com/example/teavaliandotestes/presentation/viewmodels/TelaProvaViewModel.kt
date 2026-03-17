@@ -6,8 +6,8 @@ import androidx.lifecycle.viewModelScope
 import androidx.navigation.toRoute
 import com.example.teavaliandotestes.domain.enums.CategoriaQuestao
 import com.example.teavaliandotestes.domain.usecases.GerarProvaUseCase
+import com.example.teavaliandotestes.navigation.rotas.TelaProvaRoute
 import com.example.teavaliandotestes.presentation.uistates.TelaProvaUIState
-import com.example.teavaliandotestes.presentation.ui.screens.SegundaTela
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -26,7 +26,7 @@ class TelaProvaViewModel@Inject constructor(
     private val _uiState = MutableStateFlow(TelaProvaUIState())
     val uistate = _uiState.asStateFlow()
 
-    private val valoresPassados = savedStateHandle.toRoute<SegundaTela>()
+    private val valoresPassados = savedStateHandle.toRoute<TelaProvaRoute>()
     val idAluno = valoresPassados.idAluno
 
 

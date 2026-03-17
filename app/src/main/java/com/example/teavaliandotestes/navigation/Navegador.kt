@@ -5,9 +5,10 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.toRoute
-import com.example.teavaliandotestes.presentation.ui.screens.SegundaTela
-import com.example.teavaliandotestes.presentation.ui.screens.TelaLogin
-import com.example.teavaliandotestes.presentation.ui.screens.TelaTeste
+import com.example.teavaliandotestes.navigation.rotas.TelaCadastroRoute
+import com.example.teavaliandotestes.navigation.rotas.TelaProvaRoute
+import com.example.teavaliandotestes.presentation.ui.screens.TelaCadastro
+import com.example.teavaliandotestes.presentation.ui.screens.TelaProva
 
 
 
@@ -16,15 +17,15 @@ fun Navegador(){
 
     val navController = rememberNavController()
 
-    NavHost(navController = navController, startDestination = TelaLogin){
-        composable<TelaLogin> {
-            TelaLogin(validarNavegacao = {idAluno ->
-                navController.navigate(SegundaTela(idAluno))
+    NavHost(navController = navController, startDestination = TelaCadastroRoute){
+        composable<TelaCadastroRoute> {
+            TelaCadastro(validarNavegacao = { idAluno ->
+                navController.navigate(TelaProvaRoute(idAluno))
             })
         }
-        composable<SegundaTela> {
-            val valoresPassados = it.toRoute<SegundaTela>()
-            TelaTeste(valoresPassados.idAluno, validarNavegacao = {navController.navigate(TelaLogin)})
+        composable<TelaProvaRoute> {
+            val valoresPassados = it.toRoute<TelaProvaRoute>()
+            TelaProva(navController)
         }
     }
 }

@@ -52,18 +52,13 @@ import com.example.teavaliandotestes.R
 import com.example.teavaliandotestes.ui.theme.ElectricBlue
 import com.example.teavaliandotestes.ui.theme.PastelBlue
 import com.example.teavaliandotestes.presentation.viewmodels.TelaLoginViewModel
-import kotlinx.serialization.Serializable
 import java.time.Instant
 import java.time.ZoneId
 import java.time.format.DateTimeFormatter
 
-
-@Serializable
-object TelaLogin
-
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun TelaLogin(validarNavegacao:(Int) -> Unit, viewModel: TelaLoginViewModel = hiltViewModel()) {
+fun TelaCadastro(validarNavegacao:(Int) -> Unit, viewModel: TelaLoginViewModel = hiltViewModel()) {
 
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
     val formatador = DateTimeFormatter.ofPattern("dd/MM/yyyy")

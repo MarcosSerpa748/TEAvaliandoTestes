@@ -22,56 +22,264 @@ class MeuBancoCallback@Inject constructor(private val daoEscolhido:Provider<Ques
 
             val listaQuestoes = listOf(
                 QuestaoEntity(
-                    enunciado = "Enunciado generérico",
+                    enunciado = "O ENUNCIADO DA QUESTÃO FICARÁ AQUI",
                     textApoio = null,
                     imagemApoio = null,
-                    categoria = CategoriaQuestao.LEITURA,
+                    categoria = CategoriaQuestao.ESCRITA,
                     itens = listOf(
-                        OpcaoQuestao("Laranja","img_laranja"),
-                        OpcaoQuestao("Laranja","img_laranja"),
-                        OpcaoQuestao("Laranja","img_laranja"),
-                        OpcaoQuestao("Laranja","img_laranja"),
-                        ),
-                    indicieItenCorreto = 1
+                        OpcaoQuestao("A","hasbulla"),
+                        OpcaoQuestao("B","hasbulla"),
+                        OpcaoQuestao("C","hasbulla"),
+                        OpcaoQuestao("D","Hasbulla")
+                    ),
+                    indicieItenCorreto = 0
                 ),
                 QuestaoEntity(
-                    enunciado = "Enunciado generérico",
+                    enunciado = "O ENUNCIADO DA QUESTÃO FICARÁ AQUI",
                     textApoio = null,
                     imagemApoio = null,
-                    categoria = CategoriaQuestao.LEITURA,
+                    categoria = CategoriaQuestao.ESCRITA,
                     itens = listOf(
-                        OpcaoQuestao("Laranja","img_laranja"),
-                        OpcaoQuestao("Laranja","img_laranja"),
-                        OpcaoQuestao("Laranja","img_laranja"),
-                        OpcaoQuestao("Laranja","img_laranja"),
+                        OpcaoQuestao("A","hasbulla"),
+                        OpcaoQuestao("B","hasbulla"),
+                        OpcaoQuestao("C","hasbulla"),
+                        OpcaoQuestao("D","Hasbulla")
                     ),
                     indicieItenCorreto = 1
                 ),
                 QuestaoEntity(
-                    enunciado = "Enunciado generérico",
+                    enunciado = "O ENUNCIADO DA QUESTÃO FICARÁ AQUI",
+                    textApoio = null,
+                    imagemApoio = null,
+                    categoria = CategoriaQuestao.ESCRITA,
+                    itens = listOf(
+                        OpcaoQuestao("A","hasbulla"),
+                        OpcaoQuestao("B","hasbulla"),
+                        OpcaoQuestao("C","hasbulla"),
+                        OpcaoQuestao("D","Hasbulla")
+                    ),
+                    indicieItenCorreto = 2
+                ),
+                QuestaoEntity(
+                    enunciado = "O ENUNCIADO DA QUESTÃO FICARÁ AQUI",
+                    textApoio = null,
+                    imagemApoio = null,
+                    categoria = CategoriaQuestao.ESCRITA,
+                    itens = listOf(
+                        OpcaoQuestao("A","hasbulla"),
+                        OpcaoQuestao("B","hasbulla"),
+                        OpcaoQuestao("C","hasbulla"),
+                        OpcaoQuestao("D","Hasbulla")
+                    ),
+                    indicieItenCorreto = 3
+                ),
+                QuestaoEntity(
+                    enunciado = "O ENUNCIADO DA QUESTÃO FICARÁ AQUI",
+                    textApoio = null,
+                    imagemApoio = null,
+                    categoria = CategoriaQuestao.ESCRITA,
+                    itens = listOf(
+                        OpcaoQuestao("A","hasbulla"),
+                        OpcaoQuestao("B","hasbulla"),
+                        OpcaoQuestao("C","hasbulla"),
+                        OpcaoQuestao("D","Hasbulla")
+                    ),
+                    indicieItenCorreto = 0
+                ),
+                QuestaoEntity(
+                    enunciado = "O ENUNCIADO DA QUESTÃO FICARÁ AQUI",
                     textApoio = null,
                     imagemApoio = null,
                     categoria = CategoriaQuestao.LEITURA,
                     itens = listOf(
-                        OpcaoQuestao("Laranja","img_laranja"),
-                        OpcaoQuestao("Laranja","img_laranja"),
-                        OpcaoQuestao("Laranja","img_laranja"),
-                        OpcaoQuestao("Laranja","img_laranja"),
+                        OpcaoQuestao("A","hasbulla"),
+                        OpcaoQuestao("B","hasbulla"),
+                        OpcaoQuestao("C","hasbulla"),
+                        OpcaoQuestao("D","Hasbulla")
+                    ),
+                    indicieItenCorreto = 0
+                ),
+                QuestaoEntity(
+                    enunciado = "O ENUNCIADO DA QUESTÃO FICARÁ AQUI",
+                    textApoio = null,
+                    imagemApoio = null,
+                    categoria = CategoriaQuestao.LEITURA,
+                    itens = listOf(
+                        OpcaoQuestao("A","hasbulla"),
+                        OpcaoQuestao("B","hasbulla"),
+                        OpcaoQuestao("C","hasbulla"),
+                        OpcaoQuestao("D","Hasbulla")
                     ),
                     indicieItenCorreto = 1
                 ),
                 QuestaoEntity(
-                    enunciado = "Enunciado generérico",
+                    enunciado = "O ENUNCIADO DA QUESTÃO FICARÁ AQUI",
                     textApoio = null,
                     imagemApoio = null,
                     categoria = CategoriaQuestao.LEITURA,
                     itens = listOf(
-                        OpcaoQuestao("Laranja","img_laranja"),
-                        OpcaoQuestao("Laranja","img_laranja"),
-                        OpcaoQuestao("Laranja","img_laranja"),
-                        OpcaoQuestao("Laranja","img_laranja"),
+                        OpcaoQuestao("A","hasbulla"),
+                        OpcaoQuestao("B","hasbulla"),
+                        OpcaoQuestao("C","hasbulla"),
+                        OpcaoQuestao("D","Hasbulla")
+                    ),
+                    indicieItenCorreto = 2
+                ),
+                QuestaoEntity(
+                    enunciado = "O ENUNCIADO DA QUESTÃO FICARÁ AQUI",
+                    textApoio = null,
+                    imagemApoio = null,
+                    categoria = CategoriaQuestao.LEITURA,
+                    itens = listOf(
+                        OpcaoQuestao("A","hasbulla"),
+                        OpcaoQuestao("B","hasbulla"),
+                        OpcaoQuestao("C","hasbulla"),
+                        OpcaoQuestao("D","Hasbulla")
+                    ),
+                    indicieItenCorreto = 3
+                ),
+                QuestaoEntity(
+                    enunciado = "O ENUNCIADO DA QUESTÃO FICARÁ AQUI",
+                    textApoio = null,
+                    imagemApoio = null,
+                    categoria = CategoriaQuestao.LEITURA,
+                    itens = listOf(
+                        OpcaoQuestao("A","hasbulla"),
+                        OpcaoQuestao("B","hasbulla"),
+                        OpcaoQuestao("C","hasbulla"),
+                        OpcaoQuestao("D","Hasbulla")
+                    ),
+                    indicieItenCorreto = 0
+                ),
+                QuestaoEntity(
+                    enunciado = "O ENUNCIADO DA QUESTÃO FICARÁ AQUI",
+                    textApoio = null,
+                    imagemApoio = null,
+                    categoria = CategoriaQuestao.LINGUAGEM_ORAL,
+                    itens = listOf(
+                        OpcaoQuestao("A","hasbulla"),
+                        OpcaoQuestao("B","hasbulla"),
+                        OpcaoQuestao("C","hasbulla"),
+                        OpcaoQuestao("D","Hasbulla")
+                    ),
+                    indicieItenCorreto = 0
+                ),
+                QuestaoEntity(
+                    enunciado = "O ENUNCIADO DA QUESTÃO FICARÁ AQUI",
+                    textApoio = null,
+                    imagemApoio = null,
+                    categoria = CategoriaQuestao.LINGUAGEM_ORAL,
+                    itens = listOf(
+                        OpcaoQuestao("A","hasbulla"),
+                        OpcaoQuestao("B","hasbulla"),
+                        OpcaoQuestao("C","hasbulla"),
+                        OpcaoQuestao("D","Hasbulla")
                     ),
                     indicieItenCorreto = 1
+                ),
+                QuestaoEntity(
+                    enunciado = "O ENUNCIADO DA QUESTÃO FICARÁ AQUI",
+                    textApoio = null,
+                    imagemApoio = null,
+                    categoria = CategoriaQuestao.LINGUAGEM_ORAL,
+                    itens = listOf(
+                        OpcaoQuestao("A","hasbulla"),
+                        OpcaoQuestao("B","hasbulla"),
+                        OpcaoQuestao("C","hasbulla"),
+                        OpcaoQuestao("D","Hasbulla")
+                    ),
+                    indicieItenCorreto = 2
+                ),
+                QuestaoEntity(
+                    enunciado = "O ENUNCIADO DA QUESTÃO FICARÁ AQUI",
+                    textApoio = null,
+                    imagemApoio = null,
+                    categoria = CategoriaQuestao.LINGUAGEM_ORAL,
+                    itens = listOf(
+                        OpcaoQuestao("A","hasbulla"),
+                        OpcaoQuestao("B","hasbulla"),
+                        OpcaoQuestao("C","hasbulla"),
+                        OpcaoQuestao("D","Hasbulla")
+                    ),
+                    indicieItenCorreto = 3
+                ),
+                QuestaoEntity(
+                    enunciado = "O ENUNCIADO DA QUESTÃO FICARÁ AQUI",
+                    textApoio = null,
+                    imagemApoio = null,
+                    categoria = CategoriaQuestao.LINGUAGEM_ORAL,
+                    itens = listOf(
+                        OpcaoQuestao("A","hasbulla"),
+                        OpcaoQuestao("B","hasbulla"),
+                        OpcaoQuestao("C","hasbulla"),
+                        OpcaoQuestao("D","Hasbulla")
+                    ),
+                    indicieItenCorreto = 0
+                ),
+                QuestaoEntity(
+                    enunciado = "O ENUNCIADO DA QUESTÃO FICARÁ AQUI",
+                    textApoio = null,
+                    imagemApoio = null,
+                    categoria = CategoriaQuestao.CONSCIENCIA_FONOLOGICA,
+                    itens = listOf(
+                        OpcaoQuestao("A","hasbulla"),
+                        OpcaoQuestao("B","hasbulla"),
+                        OpcaoQuestao("C","hasbulla"),
+                        OpcaoQuestao("D","Hasbulla")
+                    ),
+                    indicieItenCorreto = 0
+                ),
+                QuestaoEntity(
+                    enunciado = "O ENUNCIADO DA QUESTÃO FICARÁ AQUI",
+                    textApoio = null,
+                    imagemApoio = null,
+                    categoria = CategoriaQuestao.CONSCIENCIA_FONOLOGICA,
+                    itens = listOf(
+                        OpcaoQuestao("A","hasbulla"),
+                        OpcaoQuestao("B","hasbulla"),
+                        OpcaoQuestao("C","hasbulla"),
+                        OpcaoQuestao("D","Hasbulla")
+                    ),
+                    indicieItenCorreto = 1
+                ),
+                QuestaoEntity(
+                    enunciado = "O ENUNCIADO DA QUESTÃO FICARÁ AQUI",
+                    textApoio = null,
+                    imagemApoio = null,
+                    categoria = CategoriaQuestao.CONSCIENCIA_FONOLOGICA,
+                    itens = listOf(
+                        OpcaoQuestao("A","hasbulla"),
+                        OpcaoQuestao("B","hasbulla"),
+                        OpcaoQuestao("C","hasbulla"),
+                        OpcaoQuestao("D","Hasbulla")
+                    ),
+                    indicieItenCorreto = 2
+                ),
+                QuestaoEntity(
+                    enunciado = "O ENUNCIADO DA QUESTÃO FICARÁ AQUI",
+                    textApoio = null,
+                    imagemApoio = null,
+                    categoria = CategoriaQuestao.CONSCIENCIA_FONOLOGICA,
+                    itens = listOf(
+                        OpcaoQuestao("A","hasbulla"),
+                        OpcaoQuestao("B","hasbulla"),
+                        OpcaoQuestao("C","hasbulla"),
+                        OpcaoQuestao("D","Hasbulla")
+                    ),
+                    indicieItenCorreto = 3
+                ),
+                QuestaoEntity(
+                    enunciado = "O ENUNCIADO DA QUESTÃO FICARÁ AQUI",
+                    textApoio = null,
+                    imagemApoio = null,
+                    categoria = CategoriaQuestao.CONSCIENCIA_FONOLOGICA,
+                    itens = listOf(
+                        OpcaoQuestao("A","hasbulla"),
+                        OpcaoQuestao("B","hasbulla"),
+                        OpcaoQuestao("C","hasbulla"),
+                        OpcaoQuestao("D","Hasbulla")
+                    ),
+                    indicieItenCorreto = 0
                 )
             )
             dao.inserirQuestoes(listaQuestoes)
