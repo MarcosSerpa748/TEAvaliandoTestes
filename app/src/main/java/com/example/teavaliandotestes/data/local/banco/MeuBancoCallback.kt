@@ -30,7 +30,7 @@ class MeuBancoCallback@Inject constructor(private val daoEscolhido:Provider<Ques
                         OpcaoQuestao("A","hasbulla"),
                         OpcaoQuestao("B","hasbulla"),
                         OpcaoQuestao("C","hasbulla"),
-                        OpcaoQuestao("D","Hasbulla")
+                        OpcaoQuestao("D","hasbulla")
                     ),
                     indicieItenCorreto = 0
                 ),
@@ -43,7 +43,7 @@ class MeuBancoCallback@Inject constructor(private val daoEscolhido:Provider<Ques
                         OpcaoQuestao("A","hasbulla"),
                         OpcaoQuestao("B","hasbulla"),
                         OpcaoQuestao("C","hasbulla"),
-                        OpcaoQuestao("D","Hasbulla")
+                        OpcaoQuestao("D","hasbulla")
                     ),
                     indicieItenCorreto = 1
                 ),
@@ -56,7 +56,7 @@ class MeuBancoCallback@Inject constructor(private val daoEscolhido:Provider<Ques
                         OpcaoQuestao("A","hasbulla"),
                         OpcaoQuestao("B","hasbulla"),
                         OpcaoQuestao("C","hasbulla"),
-                        OpcaoQuestao("D","Hasbulla")
+                        OpcaoQuestao("D","hasbulla")
                     ),
                     indicieItenCorreto = 2
                 ),
@@ -69,7 +69,7 @@ class MeuBancoCallback@Inject constructor(private val daoEscolhido:Provider<Ques
                         OpcaoQuestao("A","hasbulla"),
                         OpcaoQuestao("B","hasbulla"),
                         OpcaoQuestao("C","hasbulla"),
-                        OpcaoQuestao("D","Hasbulla")
+                        OpcaoQuestao("D","hasbulla")
                     ),
                     indicieItenCorreto = 3
                 ),
@@ -82,7 +82,7 @@ class MeuBancoCallback@Inject constructor(private val daoEscolhido:Provider<Ques
                         OpcaoQuestao("A","hasbulla"),
                         OpcaoQuestao("B","hasbulla"),
                         OpcaoQuestao("C","hasbulla"),
-                        OpcaoQuestao("D","Hasbulla")
+                        OpcaoQuestao("D","hasbulla")
                     ),
                     indicieItenCorreto = 0
                 ),
@@ -95,7 +95,7 @@ class MeuBancoCallback@Inject constructor(private val daoEscolhido:Provider<Ques
                         OpcaoQuestao("A","hasbulla"),
                         OpcaoQuestao("B","hasbulla"),
                         OpcaoQuestao("C","hasbulla"),
-                        OpcaoQuestao("D","Hasbulla")
+                        OpcaoQuestao("D","hasbulla")
                     ),
                     indicieItenCorreto = 0
                 ),
@@ -108,7 +108,7 @@ class MeuBancoCallback@Inject constructor(private val daoEscolhido:Provider<Ques
                         OpcaoQuestao("A","hasbulla"),
                         OpcaoQuestao("B","hasbulla"),
                         OpcaoQuestao("C","hasbulla"),
-                        OpcaoQuestao("D","Hasbulla")
+                        OpcaoQuestao("D","hasbulla")
                     ),
                     indicieItenCorreto = 1
                 ),
@@ -121,7 +121,7 @@ class MeuBancoCallback@Inject constructor(private val daoEscolhido:Provider<Ques
                         OpcaoQuestao("A","hasbulla"),
                         OpcaoQuestao("B","hasbulla"),
                         OpcaoQuestao("C","hasbulla"),
-                        OpcaoQuestao("D","Hasbulla")
+                        OpcaoQuestao("D","hasbulla")
                     ),
                     indicieItenCorreto = 2
                 ),
@@ -134,7 +134,7 @@ class MeuBancoCallback@Inject constructor(private val daoEscolhido:Provider<Ques
                         OpcaoQuestao("A","hasbulla"),
                         OpcaoQuestao("B","hasbulla"),
                         OpcaoQuestao("C","hasbulla"),
-                        OpcaoQuestao("D","Hasbulla")
+                        OpcaoQuestao("D","hasbulla")
                     ),
                     indicieItenCorreto = 3
                 ),
@@ -147,7 +147,7 @@ class MeuBancoCallback@Inject constructor(private val daoEscolhido:Provider<Ques
                         OpcaoQuestao("A","hasbulla"),
                         OpcaoQuestao("B","hasbulla"),
                         OpcaoQuestao("C","hasbulla"),
-                        OpcaoQuestao("D","Hasbulla")
+                        OpcaoQuestao("D","hasbulla")
                     ),
                     indicieItenCorreto = 0
                 ),
@@ -160,7 +160,7 @@ class MeuBancoCallback@Inject constructor(private val daoEscolhido:Provider<Ques
                         OpcaoQuestao("A","hasbulla"),
                         OpcaoQuestao("B","hasbulla"),
                         OpcaoQuestao("C","hasbulla"),
-                        OpcaoQuestao("D","Hasbulla")
+                        OpcaoQuestao("D","hasbulla")
                     ),
                     indicieItenCorreto = 0
                 ),
@@ -173,7 +173,7 @@ class MeuBancoCallback@Inject constructor(private val daoEscolhido:Provider<Ques
                         OpcaoQuestao("A","hasbulla"),
                         OpcaoQuestao("B","hasbulla"),
                         OpcaoQuestao("C","hasbulla"),
-                        OpcaoQuestao("D","Hasbulla")
+                        OpcaoQuestao("D","hasbulla")
                     ),
                     indicieItenCorreto = 1
                 ),
@@ -186,7 +186,7 @@ class MeuBancoCallback@Inject constructor(private val daoEscolhido:Provider<Ques
                         OpcaoQuestao("A","hasbulla"),
                         OpcaoQuestao("B","hasbulla"),
                         OpcaoQuestao("C","hasbulla"),
-                        OpcaoQuestao("D","Hasbulla")
+                        OpcaoQuestao("D","hasbulla")
                     ),
                     indicieItenCorreto = 2
                 ),
@@ -199,7 +199,7 @@ class MeuBancoCallback@Inject constructor(private val daoEscolhido:Provider<Ques
                         OpcaoQuestao("A","hasbulla"),
                         OpcaoQuestao("B","hasbulla"),
                         OpcaoQuestao("C","hasbulla"),
-                        OpcaoQuestao("D","Hasbulla")
+                        OpcaoQuestao("D","hasbulla")
                     ),
                     indicieItenCorreto = 3
                 ),
@@ -212,7 +212,7 @@ class MeuBancoCallback@Inject constructor(private val daoEscolhido:Provider<Ques
                         OpcaoQuestao("A","hasbulla"),
                         OpcaoQuestao("B","hasbulla"),
                         OpcaoQuestao("C","hasbulla"),
-                        OpcaoQuestao("D","Hasbulla")
+                        OpcaoQuestao("D","hasbulla")
                     ),
                     indicieItenCorreto = 0
                 ),
@@ -225,7 +225,7 @@ class MeuBancoCallback@Inject constructor(private val daoEscolhido:Provider<Ques
                         OpcaoQuestao("A","hasbulla"),
                         OpcaoQuestao("B","hasbulla"),
                         OpcaoQuestao("C","hasbulla"),
-                        OpcaoQuestao("D","Hasbulla")
+                        OpcaoQuestao("D","hasbulla")
                     ),
                     indicieItenCorreto = 0
                 ),
@@ -238,7 +238,7 @@ class MeuBancoCallback@Inject constructor(private val daoEscolhido:Provider<Ques
                         OpcaoQuestao("A","hasbulla"),
                         OpcaoQuestao("B","hasbulla"),
                         OpcaoQuestao("C","hasbulla"),
-                        OpcaoQuestao("D","Hasbulla")
+                        OpcaoQuestao("D","hasbulla")
                     ),
                     indicieItenCorreto = 1
                 ),
@@ -251,7 +251,7 @@ class MeuBancoCallback@Inject constructor(private val daoEscolhido:Provider<Ques
                         OpcaoQuestao("A","hasbulla"),
                         OpcaoQuestao("B","hasbulla"),
                         OpcaoQuestao("C","hasbulla"),
-                        OpcaoQuestao("D","Hasbulla")
+                        OpcaoQuestao("D","hasbulla")
                     ),
                     indicieItenCorreto = 2
                 ),
@@ -264,7 +264,7 @@ class MeuBancoCallback@Inject constructor(private val daoEscolhido:Provider<Ques
                         OpcaoQuestao("A","hasbulla"),
                         OpcaoQuestao("B","hasbulla"),
                         OpcaoQuestao("C","hasbulla"),
-                        OpcaoQuestao("D","Hasbulla")
+                        OpcaoQuestao("D","hasbulla")
                     ),
                     indicieItenCorreto = 3
                 ),

@@ -1,8 +1,9 @@
 package com.example.teavaliandotestes.presentation.ui.screens
 
+import android.media.AudioAttributes
+import android.media.SoundPool
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
-import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -14,9 +15,6 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.imePadding
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
-import androidx.compose.foundation.lazy.grid.GridCells
-import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
-import androidx.compose.foundation.lazy.grid.itemsIndexed
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Button
@@ -25,6 +23,7 @@ import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
@@ -39,16 +38,30 @@ import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavController
+import com.example.teavaliandotestes.R
 import com.example.teavaliandotestes.presentation.viewmodels.TelaProvaViewModel
 
 @Composable
-fun TelaProva(
-    navController: NavController,
-    viewModel: TelaProvaViewModel = hiltViewModel()
+fun TelaProva(navController: NavController, viewModel: TelaProvaViewModel = hiltViewModel()
 ) {
     val uiState by viewModel.uistate.collectAsStateWithLifecycle()
     val contexto = LocalContext.current
 
+    val atributos = AudioAttributes.Builder()
+        .setUsage(AudioAttributes.USAGE_ASSISTANCE_SONIFICATION)
+        .setContentType(AudioAttributes.CONTENT_TYPE_SONIFICATION)
+        .build()
+
+    val soundPool =  remember{ SoundPool.Builder().setMaxStreams(5).setAudioAttributes(atributos).build() }
+
+    val somClique = remember { soundPool.load(contexto,R.raw.select_006,1) }
+    val somConfirmacao = remember { soundPool.load(contexto,R.raw.confirmation_002,1) }
+
+    DisposableEffect(Unit) {
+        onDispose {
+            soundPool.release()
+        }
+    }
     LaunchedEffect(uiState.provaFinalizada) {
         if (uiState.provaFinalizada) {
             println("A prova acabou! Navegar para relatório.")
@@ -74,21 +87,20 @@ fun TelaProva(
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .background(Color(0xFFF5F5F5)) // Fundo cinza bem clarinho
-            .padding(16.dp)
+            .background(Color(0xFFF5F5F5))
+            .padding(top = 80.dp, start = 20.dp,end = 20.dp)
             .verticalScroll(rememberScrollState())
-            .horizontalScroll(rememberScrollState())
             .imePadding(),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        // 1. Cabeçalho (Progresso)
+
         Text(
-            text = "Questão ${uiState.indicieQuestaoAtual + 1} de ${uiState.questoes.size}",
-            color = Color.Gray,
+            text = "QUESTÃO ${uiState.indicieQuestaoAtual + 1} DE ${uiState.questoes.size}",
+            color = Color.Black,
             fontWeight = FontWeight.Bold
         )
         Spacer(modifier = Modifier.height(16.dp))
-        // 4. Pergunta Principal + Botão de Áudio
+
         Row(
             verticalAlignment = Alignment.CenterVertically,
             modifier = Modifier.fillMaxWidth()
@@ -96,14 +108,14 @@ fun TelaProva(
             Text(
                 text = questao.enunciado,
                 fontSize = 20.sp,
-                fontWeight = FontWeight.Bold
+                fontWeight = FontWeight.Bold,
+                modifier = Modifier.weight(1f)
             )
             Spacer(modifier = Modifier.width(8.dp))
             BotaoOuvirEnunciado(textoParaFalar = questao.enunciado)
-
         }
         Spacer(modifier = Modifier.height(16.dp))
-        // 2. Imagem de Apoio (Opcional)
+
         if (questao.imagemApoio != null) {
             val idImagemApoio = remember(questao.imagemApoio) {
                 contexto.resources.getIdentifier(questao.imagemApoio, "drawable", contexto.packageName)
@@ -120,7 +132,6 @@ fun TelaProva(
             }
         }
 
-        // 3. Texto de Apoio (Opcional)
         if (questao.textApoio != null) {
             Card(
                 colors = CardDefaults.cardColors(containerColor = Color.White),
@@ -133,33 +144,58 @@ fun TelaProva(
                 )
             }
         }
+
         Spacer(modifier = Modifier.height(24.dp))
 
-        // 5. As 4 Opções de Resposta (Usando Grid 2x2 para ficar bonito)
-        LazyVerticalGrid(
-            columns = GridCells.Fixed(2),
-            horizontalArrangement = Arrangement.spacedBy(12.dp),
-            verticalArrangement = Arrangement.spacedBy(12.dp),
-            modifier = Modifier.weight(1f)
-        ) {
-            itemsIndexed(questao.itens) { indice, opcao ->
-                CartaoOpcao(
-                    opcao = opcao,
-                    selecionada = uiState.itemSelecionado == indice,
-                    onClick = { viewModel.selecionarOpcao(indice) }
-                )
+        Column(verticalArrangement = Arrangement.spacedBy(12.dp)) {
+            for (i in 0 until questao.itens.size step 2) {
+                Row(
+                    modifier = Modifier.fillMaxWidth(),
+                    horizontalArrangement = Arrangement.spacedBy(12.dp)
+                ) {
+                    Box(modifier = Modifier.weight(1f)) {
+                        CartaoOpcao(
+                            opcao = questao.itens[i],
+                            selecionada = uiState.itemSelecionado == i,
+                            onClick = {
+                                soundPool.play(somClique,1f,1f,1,0,1f)
+                                viewModel.selecionarOpcao(i)
+                            }
+                        )
+                    }
+
+                    if (i + 1 < questao.itens.size) {
+                        Box(modifier = Modifier.weight(1f)) {
+                            CartaoOpcao(
+                                opcao = questao.itens[i + 1],
+                                selecionada = uiState.itemSelecionado == i + 1,
+                                onClick =
+                                    {
+                                        soundPool.play(somClique,1f,1f,1,0,1f)
+                                        viewModel.selecionarOpcao(i + 1)
+                                    }
+                            )
+                        }
+                    }
+                }
             }
         }
 
+        Spacer(modifier = Modifier.height(32.dp))
+
         Button(
-            onClick = { viewModel.confirmarResposta() },
-            enabled = uiState.itemSelecionado != null, // Só libera se o aluno escolher algo
+            onClick =
+                {
+                    viewModel.confirmarResposta()
+                    soundPool.play(somConfirmacao,1f,1f,1,0,1f)
+                },
+            enabled = uiState.itemSelecionado != null,
             modifier = Modifier
                 .fillMaxWidth()
                 .height(56.dp)
         ) {
             Text(
-                text = if (uiState.indicieQuestaoAtual == uiState.questoes.size - 1) "Finalizar Prova" else "Confirmar e Avançar",
+                text = if (uiState.indicieQuestaoAtual == uiState.questoes.size - 1) "FINALIZAR PROVA" else "CONFIRMAR E AVANÇAR",
                 fontSize = 18.sp
             )
         }
