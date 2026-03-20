@@ -24,7 +24,7 @@ class MeuBancoCallback@Inject constructor(private val daoEscolhido:Provider<Ques
                 QuestaoEntity(
                     enunciado = "O ENUNCIADO DA QUESTÃO FICARÁ AQUI",
                     textApoio = null,
-                    imagemApoio = null,
+                    imagemApoio = "teuzinho",
                     categoria = CategoriaQuestao.ESCRITA,
                     itens = listOf(
                         OpcaoQuestao("A","hasbulla"),
@@ -37,7 +37,7 @@ class MeuBancoCallback@Inject constructor(private val daoEscolhido:Provider<Ques
                 QuestaoEntity(
                     enunciado = "O ENUNCIADO DA QUESTÃO FICARÁ AQUI",
                     textApoio = null,
-                    imagemApoio = null,
+                    imagemApoio = "teuzinho",
                     categoria = CategoriaQuestao.ESCRITA,
                     itens = listOf(
                         OpcaoQuestao("A","hasbulla"),
@@ -50,7 +50,7 @@ class MeuBancoCallback@Inject constructor(private val daoEscolhido:Provider<Ques
                 QuestaoEntity(
                     enunciado = "O ENUNCIADO DA QUESTÃO FICARÁ AQUI",
                     textApoio = null,
-                    imagemApoio = null,
+                    imagemApoio = "teuzinho",
                     categoria = CategoriaQuestao.ESCRITA,
                     itens = listOf(
                         OpcaoQuestao("A","hasbulla"),
@@ -63,7 +63,7 @@ class MeuBancoCallback@Inject constructor(private val daoEscolhido:Provider<Ques
                 QuestaoEntity(
                     enunciado = "O ENUNCIADO DA QUESTÃO FICARÁ AQUI",
                     textApoio = null,
-                    imagemApoio = null,
+                    imagemApoio = "teuzinho",
                     categoria = CategoriaQuestao.ESCRITA,
                     itens = listOf(
                         OpcaoQuestao("A","hasbulla"),
@@ -76,7 +76,7 @@ class MeuBancoCallback@Inject constructor(private val daoEscolhido:Provider<Ques
                 QuestaoEntity(
                     enunciado = "O ENUNCIADO DA QUESTÃO FICARÁ AQUI",
                     textApoio = null,
-                    imagemApoio = null,
+                    imagemApoio = "teuzinho",
                     categoria = CategoriaQuestao.ESCRITA,
                     itens = listOf(
                         OpcaoQuestao("A","hasbulla"),
@@ -88,7 +88,7 @@ class MeuBancoCallback@Inject constructor(private val daoEscolhido:Provider<Ques
                 ),
                 QuestaoEntity(
                     enunciado = "O ENUNCIADO DA QUESTÃO FICARÁ AQUI",
-                    textApoio = null,
+                    textApoio = "O TEXTO DE APOIO FICARÁ ENTRE O ENUNCIADO E OS ITENS",
                     imagemApoio = null,
                     categoria = CategoriaQuestao.LEITURA,
                     itens = listOf(
@@ -277,7 +277,7 @@ class MeuBancoCallback@Inject constructor(private val daoEscolhido:Provider<Ques
                         OpcaoQuestao("A","hasbulla"),
                         OpcaoQuestao("B","hasbulla"),
                         OpcaoQuestao("C","hasbulla"),
-                        OpcaoQuestao("D","Hasbulla")
+                        OpcaoQuestao("D","hasbulla")
                     ),
                     indicieItenCorreto = 0
                 )

@@ -120,29 +120,32 @@ fun TelaProva(navController: NavController, viewModel: TelaProvaViewModel = hilt
             val idImagemApoio = remember(questao.imagemApoio) {
                 contexto.resources.getIdentifier(questao.imagemApoio, "drawable", contexto.packageName)
             }
-            if (idImagemApoio != 0) {
-                Image(
-                    painter = painterResource(id = idImagemApoio),
-                    contentDescription = "Imagem de apoio",
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .height(150.dp)
+            Image(
+                painter = painterResource(id = idImagemApoio),
+                contentDescription = "Imagem de apoio",
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(150.dp)
                 )
                 Spacer(modifier = Modifier.height(16.dp))
-            }
+
         }
 
         if (questao.textApoio != null) {
             Card(
                 colors = CardDefaults.cardColors(containerColor = Color.White),
                 modifier = Modifier.fillMaxWidth()
-            ) {
-                Text(
-                    text = questao.textApoio,
-                    modifier = Modifier.padding(16.dp),
-                    fontSize = 16.sp
-                )
+                ) {
+                Row() {
+                    Text(
+                        text = questao.textApoio,
+                        modifier = Modifier.padding(16.dp),
+                        fontSize = 16.sp
+                    )
+                    BotaoOuvirEnunciado(questao.textApoio)
+                }
             }
+
         }
 
         Spacer(modifier = Modifier.height(24.dp))
