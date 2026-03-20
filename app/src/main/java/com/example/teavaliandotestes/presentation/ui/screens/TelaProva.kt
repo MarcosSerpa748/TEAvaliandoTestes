@@ -2,6 +2,7 @@ package com.example.teavaliandotestes.presentation.ui.screens
 
 import android.media.AudioAttributes
 import android.media.SoundPool
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -112,7 +113,7 @@ fun TelaProva(navController: NavController, viewModel: TelaProvaViewModel = hilt
                 modifier = Modifier.weight(1f)
             )
             Spacer(modifier = Modifier.width(8.dp))
-            BotaoOuvirEnunciado(textoParaFalar = questao.enunciado)
+            BotaoOuvirEnunciado(questao.enunciado)
         }
         Spacer(modifier = Modifier.height(16.dp))
 
@@ -134,18 +135,18 @@ fun TelaProva(navController: NavController, viewModel: TelaProvaViewModel = hilt
         if (questao.textApoio != null) {
             Card(
                 colors = CardDefaults.cardColors(containerColor = Color.White),
-                modifier = Modifier.fillMaxWidth()
-                ) {
-                Row() {
-                    Text(
+                modifier = Modifier.fillMaxWidth(),
+                border = BorderStroke(1.dp,Color.LightGray)
+                ){
+
+                Text(
                         text = questao.textApoio,
                         modifier = Modifier.padding(16.dp),
                         fontSize = 16.sp
                     )
-                    BotaoOuvirEnunciado(questao.textApoio)
-                }
-            }
+                BotaoOuvirEnunciado(questao.textApoio)
 
+            }
         }
 
         Spacer(modifier = Modifier.height(24.dp))

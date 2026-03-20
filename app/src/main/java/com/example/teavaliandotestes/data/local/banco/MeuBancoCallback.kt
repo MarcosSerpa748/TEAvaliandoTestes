@@ -1,5 +1,6 @@
 package com.example.teavaliandotestes.data.local.banco
 
+import androidx.compose.ui.tooling.preview.datasource.LoremIpsum
 import androidx.room.RoomDatabase
 import androidx.sqlite.db.SupportSQLiteDatabase
 import com.example.teavaliandotestes.data.dataclass.OpcaoQuestao
@@ -88,7 +89,7 @@ class MeuBancoCallback@Inject constructor(private val daoEscolhido:Provider<Ques
                 ),
                 QuestaoEntity(
                     enunciado = "O ENUNCIADO DA QUESTÃO FICARÁ AQUI",
-                    textApoio = "O TEXTO DE APOIO FICARÁ ENTRE O ENUNCIADO E OS ITENS",
+                    textApoio = LoremIpsum(50).values.first(),
                     imagemApoio = null,
                     categoria = CategoriaQuestao.LEITURA,
                     itens = listOf(
