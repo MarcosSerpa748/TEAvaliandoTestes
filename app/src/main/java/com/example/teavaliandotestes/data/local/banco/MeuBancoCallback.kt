@@ -89,7 +89,7 @@ class MeuBancoCallback@Inject constructor(private val daoEscolhido:Provider<Ques
                 ),
                 QuestaoEntity(
                     enunciado = "O ENUNCIADO DA QUESTÃO FICARÁ AQUI",
-                    textApoio = LoremIpsum(50).values.first(),
+                    textApoio = LoremIpsum(50).values.first().uppercase(),
                     imagemApoio = null,
                     categoria = CategoriaQuestao.LEITURA,
                     itens = listOf(

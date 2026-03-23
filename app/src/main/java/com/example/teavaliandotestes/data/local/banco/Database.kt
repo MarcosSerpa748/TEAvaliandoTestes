@@ -4,6 +4,7 @@ import android.content.Context
 import androidx.room.Room
 import com.example.teavaliandotestes.data.local.daos.AlunoDAO
 import com.example.teavaliandotestes.data.local.daos.QuestaoDao
+import com.example.teavaliandotestes.data.local.daos.ResultadoProvaDao
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -33,5 +34,9 @@ object Database{
     @Provides
     fun gerarQuestaoDao(appDatabase: AppDatabase): QuestaoDao{
         return appDatabase.gerarDaoQuestao()
+    }
+    @Provides
+    fun gerarResultadoProvaDao(appDatabase:AppDatabase): ResultadoProvaDao{
+        return appDatabase.gerarDaoResultadoProva()
     }
 }
