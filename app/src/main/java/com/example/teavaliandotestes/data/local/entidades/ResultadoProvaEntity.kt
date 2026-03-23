@@ -6,7 +6,7 @@ import androidx.room.Index
 import androidx.room.PrimaryKey
 import java.time.LocalDate
 
-@Entity("resultado_prova",
+@Entity(tableName = "resultado_prova",
     foreignKeys = [
         ForeignKey(
             entity = AlunoEntity::class,
